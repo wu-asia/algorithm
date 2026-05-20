@@ -23,7 +23,7 @@ int main()
 	for(int i = 1; i <= n; i++)
 		cin >> a[i];
 	//left, right是表示的砍树的高度
-	int left = 0, right = 4e5;
+	LL left = 0, right = 2e9;
 	while(left < right)
 	{
 		int mid = (left + right + 1) / 2;
