@@ -1,3 +1,4 @@
+//仅仅是因为没有使用离散化，没有全部AC
 #include<iostream>
 #include<vector>
 #include<algorithm>
