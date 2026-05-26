@@ -7,7 +7,7 @@ int n, m, x, y;
 const int N = 30;
 int dx[] = {1, 2, 2, 1, -2, -1, -1, -2};
 int dy[] = {2, 1, -1, -2, 1, 2, -2, -1};
-int f[N][N], st[N][N];
+long long f[N][N], st[N][N];
 int main()
 {
 	cin >> n >> m >> x >> y;
