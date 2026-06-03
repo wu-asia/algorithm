@@ -1,5 +1,5 @@
 //prim的时间复杂度:O(n^2)
-//n表示的是节点个数
+//n表示的是图的节点个数
 #include<iostream>
 #include<cstring>
 
