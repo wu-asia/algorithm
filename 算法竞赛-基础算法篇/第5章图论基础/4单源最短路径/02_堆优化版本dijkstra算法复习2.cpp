@@ -20,30 +20,31 @@ priority_queue<PII, vector<PII>, greater<PII>> heap;
 
 void dijkstra()
 {
-	//初始化
 	memset(dist, 0x3f, sizeof dist);
+
 	dist[s] = 0;
-	heap.push({0, s});
+	//储存方式<距离, 节点>
+	heap.push({dist[s], s});
+
 	while(heap.size())
 	{
 		auto t = heap.top();
 		heap.pop();
 		int a = t.second;
-
-		//a为节点
 		if(st[a]) continue;
 		st[a] = true;
 		for(auto& e : edges[a])
 		{
 			int b = e.first, c = e.second;
-			if(dist[a] + c < dist[b])
+			//松弛操作
+			if(dist[b] > dist[a] + c)
 			{
 				dist[b] = dist[a] + c;
 				heap.push({dist[b], b});
 			}
-
 		}
 	}
+
 	for(int i = 1; i <= n; i++)
 		cout << dist[i] << " ";
 	cout << endl;

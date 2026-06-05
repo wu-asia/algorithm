@@ -11,28 +11,29 @@ const int INF = 2147483647;
 int dist[N];
 bool st[N];
 
-vector<PII> edges[M];
+vector<PII> edges[N];
 int n, m, s;
 
 void dijkstra()
 {
 	for(int i = 0; i <= n; i++)
 		dist[i] = INF;
-	//初始化起点
 	dist[s] = 0;
+
 	for(int i = 1; i <= n; i++)
 	{
-		int a = 0;
+		//找出最小节点
+		int t = 0;
 		for(int j = 1; j <= n; j++)
-			if(!st[j] && dist[j] < dist[a])
-				a = j;
+			if(!st[j] && dist[j] < dist[t])
+				t = j;
+		st[t] = true;
 
-		st[a] = true;
-		for(auto& e : edges[a])
+		for(auto& e : edges[t])
 		{
-			int b = e.first, c = e.second;
-			if(dist[b] > dist[a] + c)
-				dist[b] = dist[a] + c;
+			int a = e.first, b = e.second;
+			if(dist[t] != INF && dist[t] + b < dist[a])
+				dist[a] = dist[t] + b;
 		}
 	}
 	for(int i = 1; i <= n; i++)

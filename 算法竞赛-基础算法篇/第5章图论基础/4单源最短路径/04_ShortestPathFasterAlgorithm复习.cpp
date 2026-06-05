@@ -1,45 +1,47 @@
-//时间复杂度是O(mlogm)
-//m为边的数目
 #include<iostream>
 #include<queue>
 #include<vector>
-#include<cstring>
+#include<utility>
 
 using namespace std;
+const int N = 1e4 + 10, INF = 2147483647;
 typedef pair<int, int> PII;
-const int N = 1e5 + 10;
 
 int n, m, s;
-
 vector<PII> edges[N];
+
 int dist[N];
 bool st[N];
-//小根堆
-priority_queue<PII, vector<PII>, greater<PII>> heap;
-//<距离, 节点>
 
-void dijkstra()
+void sfpa()
 {
-	//初始化
-	memset(dist, 0x3f, sizeof dist);
-	dist[s] = 0;
-	heap.push({0, s});
-	while(heap.size())
-	{
-		auto t = heap.top();
-		heap.pop();
-		int a = t.second;
+	for(int i = 0; i <= n; i++)
+		dist[i] = INF;
 
-		//a为节点
-		if(st[a]) continue;
-		st[a] = true;
+	dist[s] = 0;
+	queue<int> q;
+	//进入队列
+	q.push(s);
+	//标记顶点
+	st[s] = true;
+
+	while(q.size())
+	{
+		int a = q.front();
+		q.pop();
+		st[a] = false;
+
 		for(auto& e : edges[a])
 		{
 			int b = e.first, c = e.second;
-			if(dist[a] + c < dist[b])
+			if(dist[a] != INF && dist[a] + c < dist[b])
 			{
 				dist[b] = dist[a] + c;
-				heap.push({dist[b], b});
+				if(!st[b])
+				{
+					q.push(b);
+					st[b] = true;
+				}
 			}
 
 		}
@@ -48,6 +50,7 @@ void dijkstra()
 		cout << dist[i] << " ";
 	cout << endl;
 }
+
 int main()
 {
 	cin >> n >> m >> s;
@@ -57,7 +60,6 @@ int main()
 		cin >> a >> b >> c;
 		edges[a].push_back({b, c});
 	}
-
-	dijkstra();
+	sfpa();
 	return 0;
 }
