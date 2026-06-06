@@ -21,7 +21,7 @@ int main()
 	memset(f, 0x3f, sizeof f);
 	for(int i = 1; i <= n; i++)
 		f[i][i] = 0;
-	for(int i = 1; i <= n; i++)
+	for(int i = 1; i <= m; i++)
 	{
 		int u, v, w;
 		cin >> u >> v >> w;
