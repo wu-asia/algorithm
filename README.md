@@ -17,7 +17,6 @@ My competitive programming repository.
 ## Languages
 
 - C++
-- C
 
 ## Purpose
 
