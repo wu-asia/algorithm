@@ -1,35 +1,20 @@
 #include<iostream>
-#include<cmath>
 
 using namespace std;
 
-const int N = 5e3 + 10;
 int n, m, k;
-int a[N][N];
+typedef long long LL;
+const int N = 5e3 + 10;
+LL f[N][N];
 
-void operate(int x, int y, int k, int d)
+void insert(int x1, int x2, int y1, int y2, int d)
 {
-	for(int i = x; i <= x + k - 1; i++)
-	{
-		for(int j = y; j <= y + k - 1; j++)
-		{
-			a[i][j] += d;
-		}
-	}
+	f[x1][y1] += d;
+	f[x1][y1 + 1] -= d;
+	f[x2 + 1][y1] -= d;
+	f[x2 + 1][y2 + 1] += d;
 }
 
-bool iszero(int x, int y, int k)
-{
-	for(int i = x; i <= x + k - 1; i++)
-	{
-		for(int j = y; j <= y + k - 1; j++)
-		{
-			if(a[i][j] != 0)
-				return false;
-		}
-	}
-	return true;
-}
 int main()
 {
 	cin >> n >> m >> k;
@@ -37,27 +22,38 @@ int main()
 	{
 		int x, y, z;
 		cin >> x >> y >> z;
-		a[x][y] = z;
+		insert(x, x, y, y, z);
 	}
-	bool flag = true;
-	int cnt = 0;
+
+	// for(int i = 1; i <= n; i++)
+	// {
+	// 	for(int j = 1; j <= n; j++)
+	// 	{
+	// 		cout << f[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	cout << "first" << endl;
+	LL ret = 0;
 	for(int i = 1; i + k - 1 <= n; i++)
 	{
 		for(int j = 1; j + k - 1 <= n; j++)
 		{
-			int d = -a[i][j];
-			if(d == 0) continue;
-			cnt += (int)abs(a[i][j]);
-			operate(i, j, k, d);
-			if(j + k - 1 == n && !iszero(i, j, k))
-			{
-				flag = false;
-			}
+			ret += abs(f[i][j]);
+			insert(i, i + k - 1, j, j + k - 1, -f[i][j]);
 		}
 	}
-	if(flag)
-		cout << cnt << endl;
-	else
-		cout << -1 << endl;
+
+
+	for(int i = 1; i <= n; i++)
+		for(int j = 1; j <= n; j++)
+		{
+			if(f[i][j])
+			{
+				cout << -1 << endl;
+				return 0;
+			}
+		}
+	cout << ret << endl;
 	return 0;
 }
