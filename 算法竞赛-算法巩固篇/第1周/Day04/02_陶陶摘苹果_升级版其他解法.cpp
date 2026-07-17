@@ -25,7 +25,7 @@ int main()
 	for(int i = 1; i <= cnt; i++)
 	{
 		sum += t[i];
-		if(sum < s)
+		if(sum <= s)
 			ret++;
 		else break;
 	}

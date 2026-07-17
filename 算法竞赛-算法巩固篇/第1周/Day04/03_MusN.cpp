@@ -3,7 +3,7 @@
 using namespace std;
 
 int n, q;
-const int N = 5e4 + 10;	
+const int N = 5e3 + 10;	
 int f[N];
 int main()
 {
