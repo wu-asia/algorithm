@@ -28,7 +28,7 @@ int main()
 		if(st[i]) continue;
 		for(int j = s; j >= 1; j--)
 		{
-			if(j - y[i] > 0)
+			if(j - y[i] >= 0)
 				f[j] = max(f[j], f[j - y[i]] + 1);
 		}
 	}
