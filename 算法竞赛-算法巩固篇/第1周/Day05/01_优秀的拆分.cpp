@@ -19,21 +19,17 @@ bool calc(int n)
 int main()
 {
 	cin >> n;
-	if(!calc(n)) cout << -1 << endl;
+	if(!calc(n)) {cout << -1 << endl;
+	return 0;}
 	int sz = st.size();
-	cout << st.size() << endl;
-	while(st.size())
+	//cout << st.size() << endl;
+
+	for(int i = sz; i > 0; i--)
 	{
-		cout << st.top();
+		int x = (1 << (i - 1)) * st.top();
 		st.pop();
-	}
-	cout << endl;
-	for(int i = sz; i >= 0; i--)
-	{
-		int x = pow(2, i) * st.top();
 		if(x == 0) continue;
 		cout << x << " ";
-		st.pop();
 	}
 	cout << endl;
 	return 0;
