@@ -24,6 +24,6 @@ int main()
 	}
 
 	if(n.find_first_not_of('0') == string::npos) cout << "0" << endl;
-	else cout << n.substr(n.find_first_not_of('0'));
+	else cout << n.substr(n.find_first_not_of('0')) << endl;
 	return 0;	
 }
