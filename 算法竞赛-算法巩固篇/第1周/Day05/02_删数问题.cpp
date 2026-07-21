@@ -8,10 +8,10 @@ int main()
 	string n;
 	int k;
 	cin >> n >> k;
-	for(int i = 1; i <= k; i++)
+	for(int j = 1; j <= k; j++)
 	{
 		bool flag = false;
-		for(int i = 0; i < n.size(); i++)
+		for(int i = 0; i < n.size() - 1; i++)
 		{
 			if(n[i] > n[i + 1])
 			{
