@@ -25,6 +25,5 @@ int main()
 	}
 	if(s.find_first_not_of('0') == string::npos) cout << "0" << endl;
 	else cout << s.substr(s.find_first_not_of('0')) << endl;
-	cout << s << endl;
 	return 0;
 }
