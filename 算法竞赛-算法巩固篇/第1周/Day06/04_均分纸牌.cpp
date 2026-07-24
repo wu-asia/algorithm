@@ -15,7 +15,7 @@ int main()
 		sum += a[i];
 	}
 	sum /= n;
-	cout << sum << endl;
+	//cout << sum << endl;
 	int ret = 0;
 	for(int i = 1; i <= n; i++)
 	{
