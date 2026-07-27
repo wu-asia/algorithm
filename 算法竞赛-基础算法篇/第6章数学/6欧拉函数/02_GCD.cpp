@@ -46,7 +46,7 @@ int main()
 	LL ret = 0;
 	// for(int i = 1; i <= cnt; i++)
 	// 	cout << p[i] << " ";
-	cout << endl;
+	//cout << endl;
 	for(int i = 1; i <= cnt; i++)
 	{
 			ret += (2 * sum[n / p[i]] - 1);
