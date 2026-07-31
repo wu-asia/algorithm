@@ -19,11 +19,12 @@ LL exgcd(LL a, LL b, LL& x, LL& y)
 int main()
 {
 	LL T;
+	scanf("%lld", &T);
 	while(T--)
 	{
 		LL a, b, c, x, y;
 		LL d;
-		scanf("%d%d%d", &a, &b, &c);
+		scanf("%lld %lld %lld", &a, &b, &c);
 		d = exgcd(a, b, x, y);
 		if(c % d) printf("-1\n");
 		else
