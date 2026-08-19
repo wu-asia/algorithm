@@ -1,24 +1,23 @@
 #include<iostream>
-#include<string>
 
 using namespace std;
-const int N = 1e3 + 10;
-string s;
+
+int n;
+const int N = 2e3 + 10;
+int v[N];
 int f[N][N];
 int main()
 {
-	cin >> s;
-	int n = s.size();
-	s = " " + s;
+	cin >> n;
+	for(int i = 1; i <= n; i++)
+		cin >> v[i];
 	for(int len = 1; len <= n; len++)
 	{
 		for(int i = 1; i + len - 1 <= n; i++)
 		{
 			int j = i + len - 1;
-			if(s[i] == s[j])
-				f[i][j] = f[i - 1][j - 1];
-			else
-				f[i][j] = min(f[i + 1][j] + 1, f[i][j - 1] + 1);
+			int d = (n - len + 1);
+			f[i][j] = max(f[i + 1][j] + v[i] * d, f[i][j - 1] + v[j] * d);
 		}
 	}
 	cout << f[1][n] << endl;
