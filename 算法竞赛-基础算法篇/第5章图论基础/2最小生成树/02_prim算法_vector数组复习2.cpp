@@ -21,7 +21,7 @@ int prim()
 	{
 		int t = 0;
 		for(int j = 1; j <= n; j++)
-			if(!st[t] && dist[j] < dist[t])
+			if(!st[j] && dist[j] < dist[t])
 				t = j;
 		if(dist[t] == INF) return INF;
 
@@ -29,7 +29,7 @@ int prim()
 		ret += dist[t];
 		for(auto& e : edges[t])
 		{
-			auto a = e.first, b = e.second;
+			int a = e.first, b = e.second;
 			// t-> a is b
 			dist[a] = min(dist[a], b);
 		}
