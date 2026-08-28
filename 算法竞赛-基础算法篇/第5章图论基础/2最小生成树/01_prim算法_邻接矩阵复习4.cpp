@@ -37,7 +37,7 @@ int main()
 {
 	cin >> n >> m;
 	memset(edges, 0x3f, sizeof edges);
-	for(int i = 1; i <= n; i++)
+	for(int i = 1; i <= m; i++)
 	{
 		int x, y, z;
 		cin >> x >> y >> z;
