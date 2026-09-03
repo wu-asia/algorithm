@@ -9,6 +9,7 @@ int cnt, ret;
 int a, b;
 
 const int N = 5010;
+int fa[N];
 struct node
 {
 	int x, y, z;
@@ -40,6 +41,7 @@ int kruskal()
 		cnt++;
 		unionate(x, y);
 	}
+	return ret;
 }
 int main()
 {
@@ -50,7 +52,7 @@ int main()
 		{
 			int z;
 			cin >> z;
-			if(i >= j || k == 0) continue;
+			if(i >= j || z == 0) continue;
 
 			pos++;
 			edges[pos].x = i, edges[pos].y = j, edges[pos].z = z;
