@@ -78,7 +78,7 @@ int main()
 	for(int i = 1; i <= n; i++) fa[i] = i;
 	dfs(1);
 	cout << cnt << " ";
-	sort(e + 1, e + 1 + n, cmp);
+	sort(e + 1, e + 1 + pos, cmp);
 	cout << kruskal() << endl;
 	return 0;	
 }
