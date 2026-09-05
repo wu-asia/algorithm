@@ -3,11 +3,12 @@
 #include<queue>
 
 using namespace std;
+
 const int N = 510;
-int n;
 vector<int> edges[N];
-int  in[N];
-bool st[N]; //标记这里有摄像头
+int n;
+int in[N];
+
 int main()
 {
 	cin >> n;
@@ -15,36 +16,38 @@ int main()
 	{
 		int x, m, y;
 		cin >> x >> m;
-		st[x] = true;
-		for(int i = 1; i <= m; i++)
+		for(int j = 1; j <= m; j++)
 		{
 			cin >> y;
+			if(y > n) continue;
 			edges[x].push_back(y);
 			in[y]++;
 		}
 	}
-	queue<int> q;
-	for(int i = 0; i <= 500; i++)
-	{
-		if(st[i] && in[i] == 0) q.push(i);
-	}
 
+	queue<int> q;
+	for(int i = 1; i <= n; i++)
+	{
+		if(in[i] == 0) q.push(i);
+	}
+	int cnt = 0;
+	// cout << endl;
+	// for(int i = 1; i <= n; i++)
+	// 	cout << in[i] << " ";
+	// cout << endl;
 	while(q.size())
 	{
 		int t = q.front();
+		cnt++;
 		q.pop();
+		
 		for(auto e : edges[t])
 		{
-			if(st[e]) in[e]--;
-			if(in[e] == 0 && st[e]) q.push(e);
+			in[e]--;
+			if(in[e] == 0) q.push(e);
 		}
 	}
-	int ret = 0;
-	for(int i = 0; i <= 500; i++)
-	{
-		if(in[i] && st[i]) ret++;
-	}
-	if(ret) cout << ret << endl;
-	else cout << "YES" << endl;
+	if(n - cnt == 0) cout << "YES" << endl;
+	else cout << n - cnt << endl;
 	return 0;
 }
