@@ -28,7 +28,7 @@ int find(int x)
 bool cmp(node& a, node& b)
 {
 	int y1 = a.y, z1 = a.z, y2 = b.y, z2 = b.z;
-	if(y1 != y2) return y1 > y2;
+	if(h[y1] != h[y2]) return h[y1] > h[y2];
 	else return z1 < z2; 
 }
 
@@ -38,7 +38,7 @@ void dfs(int u)
 {
 	cnt++;
 	st[u] = true;
-	for(auto p : edges[u])
+	for(auto& p : edges[u])
 	{
 		int v = p.first, k = p.second;
 		pos++;
@@ -78,6 +78,7 @@ int main()
 	for(int i = 1; i <= n; i++) fa[i] = i;
 	dfs(1);
 	cout << cnt << " ";
+	sort(e + 1, e + 1 + n, cmp);
 	cout << kruskal() << endl;
 	return 0;	
 }
