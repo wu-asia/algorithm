@@ -1,43 +1,39 @@
 #include<iostream>
-#include<vector>
-#include<utility>
 #include<cstring>
 
 using namespace std;
 
-typedef pair<int, int> PII;
-const int INF = 0x3f3f3f3f;
 const int N = 2e3 + 10;
+const int M = 3e3 + 10;
 int n, m;
-vector<PII> edges[N];
 int dist[N];
 
+struct node
+{
+	int u, v, w;
+}a[M * 2];
+int pos;
 
 bool bf()
 {
 	memset(dist, 0x3f, sizeof dist);
 	dist[1] = 0;
-	bool flag = false;
-	
+	bool flag;
 	for(int i = 1; i <= n; i++)
 	{
 		flag = false;
-		for(int u = 1; u <= n; u++)
+		for(int j = 1; j <= pos; j++)
 		{
-			if(dist[u] == INF) continue;
-
-			for(auto& e : edges[u])
+			int u = a[j].u, v = a[j].v, w = a[j].w;
+			//u->v is w
+			if(dist[u] == 0x3f3f3f3f) continue;
+			if(dist[v] > dist[u] + w)
 			{
-				int v = e.first, w = e.second;
-				//u -> v is w
-				if(dist[v] > dist[u] + w)
-				{
-					dist[v] = dist[u] + w;
-					flag = true;
-				}
+				dist[v] = dist[u] + w;
+				flag = true;
 			}
 		}
-		if(!flag) break;
+		if(flag == false) break;
 	}
 	if(flag) return true;
 	else return false;
@@ -49,19 +45,21 @@ int main()
 	while(T--)
 	{
 		cin >> n >> m;
-		for(int i = 1; i <= n; i++)
-			edges[i].clear();
+		pos = 0;
 		for(int i = 1; i <= m; i++)
 		{
 			int u, v, w;
 			cin >> u >> v >> w;
-			edges[u].push_back({v, w});
+			pos++;
+			a[pos].u = u, a[pos].v = v, a[pos].w = w;
 			if(w >= 0)
-				edges[v].push_back({u, w});
+			{
+				pos++;
+				a[pos].u = v, a[pos].v = u, a[pos].w = w;
+			}
 		}
 		if(bf()) cout << "YES" << endl;
 		else cout << "NO" << endl;
-
 	}
 	return 0;
 }
