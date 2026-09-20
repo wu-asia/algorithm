@@ -19,6 +19,7 @@ bool spfa()
 	memset(st, 0, sizeof st);
 	memset(cnt, 0, sizeof cnt);
 	queue<int> q;
+	dist[1] = 0;
 	q.push(1);
 	st[1] = true;
 	while(q.size())
@@ -34,12 +35,13 @@ bool spfa()
 				dist[v] = dist[u] + w;
 				cnt[v] = cnt[u] + 1;
 				if(cnt[v] >= n) return true;
+				if(!st[v])
+				{
+					q.push(v);
+					st[v] = true;
+				}
 			}
-			if(!st[v])
-			{
-				q.push(v);
-				st[v] = true;
-			}
+
 		}
 	}
 	return false;
