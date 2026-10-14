@@ -13,7 +13,7 @@ My competitive programming repository.
 - Mathematics
 - String Algorithms
 - Miscellaneous
-
+- so on
 ## Languages
 
 - C++
